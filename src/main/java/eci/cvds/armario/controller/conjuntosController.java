@@ -18,13 +18,13 @@ import java.util.UUID;
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000", "https://witty-field-0ab72731e.5.azurestaticapps.net"})
 @RequestMapping(value = "/user")
-public class conjuntosController {
+public class ConjuntosController {
     private PrendaRepository prendaRepository;
     private ConjuntosRepository conjuntosRepository;
     private SessionRepository sessionRepository;
 
     @Autowired
-    public conjuntosController(PrendaRepository prendaRepository, SessionRepository sessionRepository, ConjuntosRepository conjuntosRepository) {
+    public ConjuntosController(PrendaRepository prendaRepository, SessionRepository sessionRepository, ConjuntosRepository conjuntosRepository) {
         this.prendaRepository = prendaRepository;
         this.sessionRepository = sessionRepository;
         this.conjuntosRepository = conjuntosRepository;

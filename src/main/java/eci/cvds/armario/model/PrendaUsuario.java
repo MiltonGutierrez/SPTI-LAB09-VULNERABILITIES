@@ -21,7 +21,7 @@ public class PrendaUsuario {
     @Column(name = "id")
     @GeneratedValue(generator="uuid2")
     @GenericGenerator(name="uuid2", strategy = "uuid2")
-    private UUID Id;
+    private UUID id;
 
     @ManyToOne
     @JoinColumn(name = "prenda_id", nullable = false)
