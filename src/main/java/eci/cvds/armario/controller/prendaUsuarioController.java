@@ -18,12 +18,12 @@ import java.util.stream.Collectors;
 @RestController
 @CrossOrigin(origins = {"http://localhost:3000", "https://witty-field-0ab72731e.5.azurestaticapps.net"})
 @RequestMapping(value = "/user")
-public class prendaUsuarioController {
+public class PrendaUsuarioController {
     private SessionRepository sessionRepository;
     private PrendaUsuarioRepository prendaUsuarioRepository;
     private PrendaRepository prendaRepository;
 
-    public prendaUsuarioController(SessionRepository sessionRepository, PrendaUsuarioRepository prendaUsuarioRepository) {
+    public PrendaUsuarioController(SessionRepository sessionRepository, PrendaUsuarioRepository prendaUsuarioRepository) {
         this.sessionRepository = sessionRepository;
         this.prendaUsuarioRepository = prendaUsuarioRepository;
     }
@@ -47,9 +47,9 @@ public class prendaUsuarioController {
     }
     @PostMapping("/client/UsuarioPrenda")
     public PrendaUsuario addPrenda(@RequestBody PrendaUsuario prendaUser, @RequestHeader("authToken") UUID authToken) {
-        User user = this.sessionRepository.findByToken(authToken).getUser();
         return prendaUsuarioRepository.save(prendaUser);
     }
+    
     @DeleteMapping("/client/UsuarioPrenda/{idPrenda}")
     public ResponseEntity<String> deletePrenda(@RequestHeader("authToken") UUID authToken, @PathVariable("idPrenda") UUID idPrenda) {
         User user = this.sessionRepository.findByToken(authToken).getUser();
