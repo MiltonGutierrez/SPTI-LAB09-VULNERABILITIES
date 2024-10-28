@@ -43,10 +43,7 @@ public class AuthInterceptor implements HandlerInterceptor {
                     sessionRepository.delete(session);
                     response.sendError(HttpServletResponse.SC_EXPECTATION_FAILED, "SessionTimeout");
                     return false;
-                } else if ((path.startsWith("/user/admin") || path.startsWith("/login/eliminarSesiones")) && session.getUser().getRole().equals(Roles.ADMINISTRADOR)) {
-                    response.setHeader("Access-Control-Allow-Credentials", "true");
-                    return true;
-                } else if (path.startsWith("/user/client") && session.getUser().getRole().equals(Roles.CLIENTE)) {
+                } else if (((path.startsWith("/user/admin") || path.startsWith("/login/eliminarSesiones")) && session.getUser().getRole().equals(Roles.ADMINISTRADOR)) || (path.startsWith("/user/client") && session.getUser().getRole().equals(Roles.CLIENTE))) {
                     response.setHeader("Access-Control-Allow-Credentials", "true");
                     return true;
                 } else {
@@ -61,13 +58,5 @@ public class AuthInterceptor implements HandlerInterceptor {
             response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token does not exist in header authToken");
             return false;
         }
-    }
-
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-    }
-
-    @Override
-    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
     }
 }
